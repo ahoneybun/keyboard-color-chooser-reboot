@@ -4,6 +4,8 @@ extern crate gtk;
 use gio::prelude::*;
 use gtk::prelude::*;
 
+use gtk::{Box, ContainerExt, WidgetExt};
+
 use std::env::args;
 
 fn build_ui(application: &gtk::Application) {
@@ -14,13 +16,16 @@ fn build_ui(application: &gtk::Application) {
     window.set_position(gtk::WindowPosition::Center);
     window.set_default_size(500, 150);
 
-    let button1 = gtk::Button::new_with_label("Left");
-    //let button2 = gtk::Button::new_with_label("Center");
-    //let button3 = gtk::Button::new_with_label("Right");
+    let left = gtk::Button::new_with_label("Left");
+    let center = gtk::Button::new_with_label("Center");
+    let right = gtk::Button::new_with_label("Right");
 
-    window.add(&button1);
-    //window.add(&button2);
-    //window.add(&button3);
+    let container = Box::new(gtk::Orientation::Horizontal, 50);
+    window.add(&container);
+
+    container.add(&left);
+    container.add(&center);
+    container.add(&right);
 
     window.show_all();
 }
@@ -36,4 +41,3 @@ fn main() {
 
     application.run(&args().collect::<Vec<_>>());
 }
-
