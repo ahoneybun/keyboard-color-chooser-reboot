@@ -23,13 +23,16 @@ fn build_ui(application: &gtk::Application) {
     let right_button = gtk::Button::new_with_label("Right");
 
     let hbox = gtk::Box::new(Horizontal, 10);
+    //let hbox_2 = gtk::Box::new(Horizontal, 10);
     window.add(&hbox);
+    //window.add(&hbox_2);
 
     // Labels
     //let label = gtk::Label::new(None);
     //label.set_text("Left");
     
     hbox.add(&left_button);
+    //hbox_2.add(&label);
     hbox.add(&center_button);
     hbox.add(&right_button);
 
