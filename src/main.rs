@@ -5,7 +5,7 @@ use gio::prelude::*;
 use gtk::prelude::*;
 
 //use gtk::{Box, ContainerExt, WidgetExt};
-use gtk::{GridExt};
+use gtk::Orientation::{Horizontal};
 
 use std::env::args;
 
@@ -13,25 +13,25 @@ fn build_ui(application: &gtk::Application) {
     let window = gtk::ApplicationWindow::new(application);
 
     window.set_title("Keyboard Color Chooser");
-    window.set_border_width(10);
+    window.set_border_width(175);
     window.set_position(gtk::WindowPosition::Center);
-    window.set_default_size(500, 150);
+    window.set_default_size(500, 350);
 
     // Buttons
-    let leftButton = gtk::Button::new_with_label("Left");
-    let centerButton = gtk::Button::new_with_label("Center");
-    let rightButton = gtk::Button::new_with_label("Right");
+    let left_button = gtk::Button::new_with_label("Left");
+    let center_button = gtk::Button::new_with_label("Center");
+    let right_button = gtk::Button::new_with_label("Right");
 
-    let grid = GridExt:;
-    window.add(&grid);
+    let hbox = gtk::Box::new(Horizontal, 10);
+    window.add(&hbox);
 
     // Labels
     //let label = gtk::Label::new(None);
     //label.set_text("Left");
     
-    grid.add(&leftButton);
-    grid.add(&centerButton);
-    grid.add(&rightButton);
+    hbox.add(&left_button);
+    hbox.add(&center_button);
+    hbox.add(&right_button);
 
     window.show_all();
 }
