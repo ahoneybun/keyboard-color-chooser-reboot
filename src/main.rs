@@ -3,7 +3,7 @@ extern crate gtk;
 
 // use gio::prelude::*;
 use gtk::prelude::*; 
-use gtk::{Window, WindowType, Label};
+use gtk::{Window, WindowType};
 
 use gtk::Orientation::Horizontal;
 
@@ -19,7 +19,7 @@ fn main() {
     window.set_title("Keyboard Color Chooser");
     window.set_border_width(175);
     window.set_position(gtk::WindowPosition::Center);
-    window.set_default_size(500, 350);
+    // window.set_default_size(50, 150);
 
     //Destroy window on exit
     window.connect_delete_event(|_,_| {gtk::main_quit(); Inhibit(false) });
