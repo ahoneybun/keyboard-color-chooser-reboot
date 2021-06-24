@@ -43,21 +43,15 @@ fn main() {
         println!("Right Pressed")
     ));
 
-    // Grid
-    // let grid = gtk::Grid::new();
-
     // Boxes
     let buttonbox = gtk::Box::new(Horizontal, 10);
 
     window.add(&buttonbox);
-
-    // grid.add(&buttonbox);
     
     buttonbox.add(&left_button);
     buttonbox.add(&center_button);
     buttonbox.add(&right_button);
 
-    // labelbox.add(&left_label);
     window.show_all();
     gtk::main();
 }
