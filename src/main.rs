@@ -28,26 +28,25 @@ fn main() {
     let right_button = gtk::Button::with_label("Right");
 
     // Labels
-    let left_label = Label::new(Some("Left"));
+    // let left_label = Label::new(Some("Left"));
 
     // Grid
     let grid = gtk::Grid::new();
 
     // Boxes
     let buttonbox = gtk::Box::new(Horizontal, 10);
-    let labelbox = gtk::Box::new(Horizontal, 20);
+    // let labelbox = gtk::Box::new(Horizontal, 20);
 
     window.add(&grid);
 
     grid.add(&buttonbox);
-    grid.add(&labelbox);
+    // grid.add(&labelbox);
     
     buttonbox.add(&left_button);
     buttonbox.add(&center_button);
     buttonbox.add(&right_button);
 
-    labelbox.add(&left_label);
-
+    // labelbox.add(&left_label);
     window.show_all();
-
+    gtk::main();
 }
