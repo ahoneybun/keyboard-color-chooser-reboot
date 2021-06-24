@@ -27,8 +27,16 @@ fn main() {
     let center_button = gtk::Button::with_label("Center");
     let right_button = gtk::Button::with_label("Right");
 
+    left_button.connect_clicked(|_| (
+        println!("Left Pressed")
+    ));
+
     center_button.connect_clicked(|_| (
-        println!("Pressed")
+        println!("Center Pressed")
+    ));
+
+    right_button.connect_clicked(|_| (
+        println!("Right Pressed")
     ));
 
     // Labels
