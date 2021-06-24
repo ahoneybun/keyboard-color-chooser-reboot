@@ -1,44 +1,53 @@
 extern crate gio;
 extern crate gtk;
 
-use gio::prelude::*;
-use gtk::prelude::*;
+// use gio::prelude::*;
+use gtk::prelude::*; 
+use gtk::{Window, WindowType, Label};
 
 use gtk::Orientation::Horizontal;
 
-use std::env::args;
+fn main() {
+    if gtk::init().is_err() { //Initialize Gtk before doing anything with it
+        panic!("Can't init GTK");
+    }
 
-fn build_ui(application: &gtk::Application) {
-    let window = gtk::ApplicationWindow::new(application);
-
+    // Window Traits
+    let window = Window::new(WindowType::Toplevel); 
     window.set_title("Keyboard Color Chooser");
     window.set_border_width(175);
     window.set_position(gtk::WindowPosition::Center);
     window.set_default_size(500, 350);
 
-    // Buttons
-    let left_button = gtk::ColorButton::();
-    let center_button = gtk::Button::new_with_label("Center");
-    let right_button = gtk::Button::new_with_label("Right");
+    //Destroy window on exit
+    window.connect_delete_event(|_,_| {gtk::main_quit(); Inhibit(false) });
 
-    let hbox = gtk::Box::new(Horizontal, 10);
-    window.add(&hbox);
+    // Buttons
+    let left_button = gtk::Button::with_label("Left");
+    let center_button = gtk::Button::with_label("Center");
+    let right_button = gtk::Button::with_label("Right");
+
+    // Labels
+    let left_label = Label::new(Some("Left"));
+
+    // Grid
+    let grid = gtk::Grid::new();
+
+    // Boxes
+    let buttonbox = gtk::Box::new(Horizontal, 10);
+    let labelbox = gtk::Box::new(Horizontal, 20);
+
+    window.add(&grid);
+
+    grid.add(&buttonbox);
+    grid.add(&labelbox);
     
-    hbox.add(&left_button);
-    hbox.add(&center_button);
-    hbox.add(&right_button);
+    buttonbox.add(&left_button);
+    buttonbox.add(&center_button);
+    buttonbox.add(&right_button);
+
+    labelbox.add(&left_label);
 
     window.show_all();
-}
 
-fn main() {
-    let application =
-        gtk::Application::new(Some("com.github.ahoneybun.keyboard-color-chooser"), Default::default())
-            .expect("Initialization failed...");
-
-    application.connect_activate(|app| {
-        build_ui(app);
-    });
-
-    application.run(&args().collect::<Vec<_>>());
 }
