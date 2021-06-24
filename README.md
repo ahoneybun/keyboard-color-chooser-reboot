@@ -1,7 +1,6 @@
 # keyboard-color-chooser-reboot
-Keyboard Color Chooser written in Rust.
-
-https://github.com/ahoneybun/keyboard-color-switcher
+[Keyboard Color Chooser](https://github.com/ahoneybun/keyboard-color-switcher
+) written in Rust.
 
 # How to use it:
 
