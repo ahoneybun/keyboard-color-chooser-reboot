@@ -19,6 +19,7 @@ fn main() {
     window.set_title("Keyboard Color Chooser");
     window.set_border_width(175);
     window.set_position(gtk::WindowPosition::Center);
+    // let (_width, _height) = (50, 150);
     // window.set_default_size(50, 150);
 
     //Destroy window on exit
