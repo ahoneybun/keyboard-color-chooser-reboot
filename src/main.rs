@@ -8,7 +8,9 @@ use gtk::{Window, WindowType, Label};
 use gtk::Orientation::Horizontal;
 
 fn main() {
-    if gtk::init().is_err() { //Initialize Gtk before doing anything with it
+
+    // Initialize Gtk
+    if gtk::init().is_err() {  
         panic!("Can't init GTK");
     }
 
@@ -27,6 +29,7 @@ fn main() {
     let center_button = gtk::Button::with_label("Center");
     let right_button = gtk::Button::with_label("Right");
 
+    // Button Actions
     left_button.connect_clicked(|_| (
         println!("Left Pressed")
     ));
