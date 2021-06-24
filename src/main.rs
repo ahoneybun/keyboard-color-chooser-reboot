@@ -4,7 +4,7 @@ extern crate gtk;
 use gio::prelude::*;
 use gtk::prelude::*;
 
-use gtk::Orientation::{Horizontal};
+use gtk::Orientation::Horizontal;
 
 use std::env::args;
 
@@ -17,7 +17,7 @@ fn build_ui(application: &gtk::Application) {
     window.set_default_size(500, 350);
 
     // Buttons
-    let left_button = gtk::Button::new_with_label("Left");
+    let left_button = gtk::ColorButton::();
     let center_button = gtk::Button::new_with_label("Center");
     let right_button = gtk::Button::new_with_label("Right");
 
