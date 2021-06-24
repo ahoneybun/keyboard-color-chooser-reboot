@@ -26,9 +26,9 @@ fn main() {
     window.connect_delete_event(|_,_| {gtk::main_quit(); Inhibit(false) });
 
     // Buttons
-    let left_button = gtk::Button::with_label("Left");
-    let center_button = gtk::Button::with_label("Center");
-    let right_button = gtk::Button::with_label("Right");
+    let left_button = gtk::ColorButton::new();
+    let center_button = gtk::ColorButton::new();
+    let right_button = gtk::ColorButton::new();
 
     // Button Actions
     left_button.connect_clicked(|_| (
