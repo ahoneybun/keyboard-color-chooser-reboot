@@ -44,7 +44,7 @@ fn main() {
     ));
 
     // Boxes
-    let buttonbox = gtk::Box::new(Horizontal, 10);
+    let buttonbox = gtk::ButtonBox::new(Horizontal);
 
     window.add(&buttonbox);
     
