@@ -1,11 +1,8 @@
 [package]
 name = "keyboard-color-chooser"
 version = "0.1.0"
-authors = ["Aaron Honeycutt <honeycuttaaron3@gmail.com>"]
-edition = "2018"
+authors = ["Aaron Honeycutt <aaronhoneycutt@proton.me>"]
+edition = "2021"
 
-[dependencies.gtk]
-version = "0.9.2"
-
-[dependencies.gio]
-version = "0.14.0"
+[dependencies]
+iced = "0.10.0"

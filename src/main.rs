@@ -1,57 +1,60 @@
-extern crate gio;
-extern crate gtk;
+use iced::widget::{button, column, text};
+use iced::window;
+use iced::{Alignment, Element, Sandbox, Settings};
 
-// use gio::prelude::*;
-use gtk::prelude::*; 
-use gtk::{Window, WindowType};
+pub fn main() -> iced::Result {
+    Test::run(Settings {
+        antialiasing: true,
+        window: window::Settings {
+            size: (500, 450),
+            position: window::Position::Centered,
+            ..window::Settings::default()
+        },
+        ..Settings::default()
+    })
+}
 
-use gtk::Orientation::Horizontal;
+struct Test {
+    value: i32,
+}
 
-fn main() {
+#[derive(Debug, Clone, Copy)]
+enum Message {
+    IncrementPressed,
+    DecrementPressed,
+}
 
-    // Initialize Gtk
-    if gtk::init().is_err() {  
-        panic!("Can't init GTK");
+impl Sandbox for Test {
+    type Message = Message;
+
+    fn new() -> Self {
+        Self { value: 0 }
     }
 
-    // Window Traits
-    let window = Window::new(WindowType::Toplevel); 
-    window.set_title("Keyboard Color Chooser");
-    window.set_border_width(175);
-    window.set_position(gtk::WindowPosition::Center);
-    // let (_width, _height) = (50, 150);
-    // window.set_default_size(50, 150);
+    fn title(&self) -> String {
+        String::from("Keyboard Color Switcher")
+    }
 
-    //Destroy window on exit
-    window.connect_delete_event(|_,_| {gtk::main_quit(); Inhibit(false) });
+    fn update(&mut self, message: Message) {
+        match message {
+            Message::IncrementPressed => {
+                self.value += 1;
+            }
+            Message::DecrementPressed => {
+                self.value -= 1;
+            }
+        }
+    }
 
-    // Buttons
-    let left_button = gtk::ColorButton::new();
-    let center_button = gtk::ColorButton::new();
-    let right_button = gtk::ColorButton::new();
-
-    // Button Actions
-    left_button.connect_clicked(|_| (
-        println!("Left Pressed")
-    ));
-
-    center_button.connect_clicked(|_| (
-        println!("Center Pressed")
-    ));
-
-    right_button.connect_clicked(|_| (
-        println!("Right Pressed")
-    ));
-
-    // Boxes
-    let buttonbox = gtk::ButtonBox::new(Horizontal);
-
-    window.add(&buttonbox);
-    
-    buttonbox.add(&left_button);
-    buttonbox.add(&center_button);
-    buttonbox.add(&right_button);
-
-    window.show_all();
-    gtk::main();
+    fn view(&self) -> Element<Message> {
+        column![
+            button("Increment").on_press(Message::IncrementPressed),
+            text(self.value).size(50),
+            button("Decrement").on_press(Message::DecrementPressed)
+        ]
+        .padding(20)
+        .align_items(Alignment::Center)
+        .into()
+    }
 }
+
