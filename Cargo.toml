@@ -5,4 +5,10 @@ authors = ["Aaron Honeycutt <aaronhoneycutt@proton.me>"]
 edition = "2021"
 
 [dependencies]
-iced = "0.10.0"
+tracing = "0.1.37"
+tracing-subscriber = "0.3.17"
+
+[dependencies.libcosmic]
+path = "../libcosmic"
+default-features = false
+features = ["debug", "winit", "tokio"]
